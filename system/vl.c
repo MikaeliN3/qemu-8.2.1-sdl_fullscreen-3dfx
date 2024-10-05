@@ -866,7 +866,7 @@ static MachineClass *find_default_machine(GSList *machines)
 
 static void feature(void)
 {
-    const char rev_[ALIGNED(1)]
+    const char rev_[] = "3cb40d4-"
         ;
     printf("  featuring qemu-3dfx@%s"__TIME__" "__DATE__" build\n", rev_);
 }

@@ -18,7 +18,6 @@ jobs:
           pacman -Sy --noconfirm --needed bison diffutils flex \
           git grep make sed \
           mingw-w64-x86_64-binutils \
-          mingw-w64-x86_64-ccache \
           mingw-w64-x86_64-gcc \
           mingw-w64-x86_64-glib2 \
           mingw-w64-x86_64-libusb \

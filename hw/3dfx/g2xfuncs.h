@@ -254,4 +254,4 @@ typedef enum {
 #endif /* QEMU_OSDEP_H */
 
 #define COMMIT_SIGN \
-    const char rev_[ALIGNED(1)]
+    const char rev_[] = "3cb40d4-"
