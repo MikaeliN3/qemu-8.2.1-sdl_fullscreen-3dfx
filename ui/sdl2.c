@@ -86,7 +86,7 @@ void sdl2_window_create(struct sdl2_console *scon)
     assert(!scon->real_window);
 
     if (gui_fullscreen) {
-        flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+        flags |= SDL_WINDOW_FULLSCREEN;
     } else {
         flags |= SDL_WINDOW_RESIZABLE;
     }
@@ -344,7 +344,7 @@ static void toggle_full_screen(struct sdl2_console *scon)
     gui_fullscreen = !gui_fullscreen;
     if (gui_fullscreen) {
         SDL_SetWindowFullscreen(scon->real_window,
-                                SDL_WINDOW_FULLSCREEN_DESKTOP);
+                                SDL_WINDOW_FULLSCREEN);
         gui_saved_grab = gui_grab;
         sdl_grab_start(scon);
     } else {
