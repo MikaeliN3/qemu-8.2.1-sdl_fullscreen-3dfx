@@ -30,7 +30,9 @@ jobs:
           mingw-w64-x86_64-python \
           mingw-w64-x86_64-SDL2
           mkdir -p build/_bin && cd build
-          ../configure --target-list=i386-softmmu --static --enable-sdl \
+          ../configure --target-list=i386-softmmu --static \
+          --without-default-devices \
+          --enable-sdl \
           --enable-whpx \
           --enable-dsound \
           --enable-qcow1 \
