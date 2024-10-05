@@ -29,16 +29,21 @@ jobs:
           mingw-w64-x86_64-python \
           mingw-w64-x86_64-SDL2
           mkdir -p build/_bin && cd build
+          export MSYS = 'winsymlinks:native'
           ../configure --target-list=i386-softmmu --static \
+          --enable-fdt=system \
           --without-default-devices \
           --enable-sdl \
           --enable-whpx \
           --enable-dsound \
           --enable-qcow1 \
-          --enable-slirp \
+          --enable-slirp=system \
+          --disable-iconv \
+          --disable-tools \
           --disable-werror \
           --disable-docs \
           --disable-capstone \
+          --disable-zstd \
           --prefix=$(pwd)/_bin
           make -j$(nproc)
           ls _bin
