@@ -37,7 +37,7 @@ jobs:
           --enable-whpx \
           --enable-dsound \
           --enable-qcow1 \
-          --enable-slirp=system \
+          --enable-slirp \
           --disable-iconv \
           --disable-tools \
           --disable-werror \
