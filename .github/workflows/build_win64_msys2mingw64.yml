@@ -53,6 +53,6 @@ jobs:
           --enable-slirp \
           --disable-werror \
           --disable-docs \
-          --prefix=_bin
+          --prefix=$(pwd)/_bin
           make -j$(nproc)
           ls _bin
