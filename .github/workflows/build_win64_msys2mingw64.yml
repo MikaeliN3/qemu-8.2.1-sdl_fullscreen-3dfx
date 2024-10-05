@@ -44,7 +44,7 @@ jobs:
           mingw-w64-x86_64-snappy \
           mingw-w64-x86_64-spice \
           mingw-w64-x86_64-usbredir
-          mkdir build && cd build
+          mkdir -p build/_bin && cd build
           ccache --zero-stats
           ../configure --target-list=i386-softmmu --static --enable-sdl \
           --enable-whpx \
@@ -53,6 +53,6 @@ jobs:
           --enable-slirp \
           --disable-werror \
           --disable-docs \
-          --prefix=./bin
+          --prefix=_bin
           make -j$(nproc)
-          ls ./bin
+          ls _bin
