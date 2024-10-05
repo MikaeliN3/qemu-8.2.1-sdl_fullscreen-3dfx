@@ -1,0 +1,58 @@
+name: Build win64 static binary with MSYS2/MINGW64
+on: workflow_dispatch
+
+jobs:
+  msys2-mingw64:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+      - name: win64
+        run: |
+          pacman -Sy --noconfirm --needed bison diffutils flex \
+          git grep make sed \
+          mingw-w64-x86_64-binutils \
+          mingw-w64-x86_64-capstone \
+          mingw-w64-x86_64-ccache \
+          mingw-w64-x86_64-curl \
+          mingw-w64-x86_64-cyrus-sasl \
+          mingw-w64-x86_64-dtc \
+          mingw-w64-x86_64-gcc \
+          mingw-w64-x86_64-glib2 \
+          mingw-w64-x86_64-gnutls \
+          mingw-w64-x86_64-libgcrypt \
+          mingw-w64-x86_64-libjpeg-turbo \
+          mingw-w64-x86_64-libnfs \
+          mingw-w64-x86_64-libpng \
+          mingw-w64-x86_64-libssh \
+          mingw-w64-x86_64-libtasn1 \
+          mingw-w64-x86_64-libusb \
+          mingw-w64-x86_64-lzo2 \
+          mingw-w64-x86_64-nettle \
+          mingw-w64-x86_64-ninja \
+          mingw-w64-x86_64-pixman \
+          mingw-w64-x86_64-pkgconf \
+          mingw-w64-x86_64-python \
+          mingw-w64-x86_64-SDL2 \
+          mingw-w64-x86_64-SDL2_image \
+          mingw-w64-x86_64-snappy \
+          mingw-w64-x86_64-spice \
+          mingw-w64-x86_64-usbredir
+          mkdir build && cd build
+          ccache --zero-stats
+          ../configure --target-list=i386-softmmu --static --enable-sdl \
+          --enable-whpx \
+          --enable-dsound \
+          --enable-qcow1 \
+          --enable-slirp \
+          --disable-werror \
+          --disable-docs \
+          --prefix=./bin
+          make -j$(nproc)
+          ls ./bin
